@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
+import { Link, useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 
 const Signup = () => {
@@ -8,7 +8,7 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -16,22 +16,14 @@ const Signup = () => {
       const response = await axios.post('http://localhost:5000/api/signup', {
         fullname: name,
         email: email,
-        password: password,
+        password: password
       });
-
-      setSuccess(response.data.message);
-      setError(''); // Clear any error messages if signup is successful
-      navigate('/'); // Redirect to login page or another page if needed
+      navigate('/home'); 
     } catch (error) {
-      if (error.response && error.response.data) {
-        setError(error.response.data.message); // Display server error messages
-      } else {
-        setError('Something went wrong. Please try again.');
-      }
-      setSuccess(''); // Clear success message on error
+      setError('Something went wrong. Please try again.');
+      setSuccess(''); 
     }
   };
-
   return (
     <div className="flex items-center justify-center mt-28">
       <div className="w-96 border rounded bg-white px-7 py-10">
